@@ -1,24 +1,21 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 
 import Scroll from '../components/Scroll';
 
-import pic1 from '../assets/images/pic01.jpg';
-import pic2 from '../assets/images/pic02.jpg';
-import pic3 from '../assets/images/pic03.jpg';
-import config from '../../config';
-const IndexPage = () => (
+const IndexPage = ({data}) => (
   <Layout>
-    <section id="banner">
+    <section id="banner" style={{backgroundImage: `url(${data.strapiWebbileHomepage.cover.publicURL})`}}>
       <div className="inner">
-        <h2>{config.heading}</h2>
-        <p>{config.subHeading}</p>
+        <h2>{data.strapiWebbileHomepage.title}</h2>
+        <p>{data.strapiWebbileHomepage.subtitle}</p>
         <ul className="actions special">
           <li>
             <Scroll type="id" element="one">
               <a href="/#" className="button primary">
-                Explore
+                {data.strapiWebbileHomepage.button}
               </a>
             </Scroll>
           </li>
@@ -26,7 +23,7 @@ const IndexPage = () => (
       </div>
       <Scroll type="id" element="one">
         <a href="#one" className="more">
-          Learn More
+          {data.strapiWebbileHomepage.learn_more}
         </a>
       </Scroll>
     </section>
@@ -34,146 +31,76 @@ const IndexPage = () => (
     <section id="one" className="wrapper style1 special">
       <div className="inner">
         <header className="major">
-          <h2>
-            Arcu aliquet vel lobortis ata nisl
-            <br />
-            eget augue amet aliquet nisl cep donec
-          </h2>
-          <p>
-            Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet
-            eleifend
-            <br />
-            fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus
-            ullamcorper.
-          </p>
+          <h2>{data.strapiWebbileHomepage.Jumbo.title}</h2>
+          <p>{data.strapiWebbileHomepage.Jumbo.subtitle}</p>
         </header>
-        <ul className="icons major">
-          <li>
-            <span className="icon fa-gem major style1">
-              <span className="label">Lorem</span>
-            </span>
-          </li>
-          <li>
-            <span className="icon fa-heart major style2">
-              <span className="label">Ipsum</span>
-            </span>
-          </li>
-          <li>
-            <span className="icon solid fa-code major style3">
-              <span className="label">Dolor</span>
-            </span>
-          </li>
-        </ul>
+        {
+          data.strapiWebbileHomepage.Jumbo.IconList.length > 0
+          ?
+          <ul className="icons major">
+          {
+          data.strapiWebbileHomepage.Jumbo.IconList.map((item, index) => {
+            return (
+            <li key={index}>
+              <span className={`icon ${item.icon} major style${index+1}`}>
+                <span className="label">{item.label}</span>
+              </span>
+            </li>
+            )
+          })
+          }
+          </ul>
+          : null
+        }
       </div>
     </section>
 
-    <section id="two" className="wrapper alt style2">
-      <section className="spotlight">
-        <div className="image">
-          <img src={pic1} alt="" />
-        </div>
-        <div className="content">
-          <h2>
-            Magna primis lobortis
-            <br />
-            sed ullamcorper
-          </h2>
-          <p>
-            Aliquam ut ex ut augue consectetur interdum. Donec hendrerit
-            imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.
-          </p>
-        </div>
+    {
+      data.strapiWebbileHomepage.Spotlight.length > 0
+      ?
+      <section id="two" className="wrapper alt style2">
+        {
+          data.strapiWebbileHomepage.Spotlight.map((item, index) => {
+            return (
+            <section key={index} className={`spotlight ${item.imageSide}`}>
+              <div className="image">
+                <img src={item.image.publicURL} alt={item.title} />
+              </div>
+              <div className="content">
+                <h2>{item.title}</h2>
+                <p>{item.subtitle}</p>
+              </div>
+            </section>
+            )
+          })
+        }
       </section>
-      <section className="spotlight">
-        <div className="image">
-          <img src={pic2} alt="" />
-        </div>
-        <div className="content">
-          <h2>
-            Tortor dolore feugiat
-            <br />
-            elementum magna
-          </h2>
-          <p>
-            Aliquam ut ex ut augue consectetur interdum. Donec hendrerit
-            imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.
-          </p>
-        </div>
-      </section>
-      <section className="spotlight">
-        <div className="image">
-          <img src={pic3} alt="" />
-        </div>
-        <div className="content">
-          <h2>
-            Augue eleifend aliquet
-            <br />
-            sed condimentum
-          </h2>
-          <p>
-            Aliquam ut ex ut augue consectetur interdum. Donec hendrerit
-            imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.
-          </p>
-        </div>
-      </section>
-    </section>
+      : null
+    }
 
     <section id="three" className="wrapper style3 special">
       <div className="inner">
         <header className="major">
-          <h2>Accumsan mus tortor nunc aliquet</h2>
-          <p>
-            Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet
-            eleifend
-            <br />
-            fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus
-            ullamcorper.
-          </p>
+          <h2>{data.strapiWebbileHomepage.FeatureBlock.title}</h2>
+          <p>{data.strapiWebbileHomepage.FeatureBlock.subtitle}</p>
         </header>
-        <ul className="features">
-          <li className="icon fa-paper-plane">
-            <h3>Arcu accumsan</h3>
-            <p>
-              Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem
-              tincidunt nullam amet leo Aenean ligula consequat consequat.
-            </p>
-          </li>
-          <li className="icon solid fa-laptop">
-            <h3>Ac Augue Eget</h3>
-            <p>
-              Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem
-              tincidunt nullam amet leo Aenean ligula consequat consequat.
-            </p>
-          </li>
-          <li className="icon solid fa-code">
-            <h3>Mus Scelerisque</h3>
-            <p>
-              Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem
-              tincidunt nullam amet leo Aenean ligula consequat consequat.
-            </p>
-          </li>
-          <li className="icon solid fa-headphones-alt">
-            <h3>Mauris Imperdiet</h3>
-            <p>
-              Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem
-              tincidunt nullam amet leo Aenean ligula consequat consequat.
-            </p>
-          </li>
-          <li className="icon fa-heart">
-            <h3>Aenean Primis</h3>
-            <p>
-              Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem
-              tincidunt nullam amet leo Aenean ligula consequat consequat.
-            </p>
-          </li>
-          <li className="icon fa-flag">
-            <h3>Tortor Ut</h3>
-            <p>
-              Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem
-              tincidunt nullam amet leo Aenean ligula consequat consequat.
-            </p>
-          </li>
-        </ul>
+        {
+          data.strapiWebbileHomepage.FeatureBlock.Feature.length > 0
+          ?
+          <ul className="features">
+          {
+          data.strapiWebbileHomepage.FeatureBlock.Feature.map((item, index) => {
+            return (
+              <li key={index} className={`icon ${item.icon}`}>
+                <h3>{item.title}</h3>
+                <p>{item.subtitle}</p>
+              </li>
+            )
+          })
+          }
+          </ul>
+          : null
+        }
       </div>
     </section>
 
@@ -202,5 +129,44 @@ const IndexPage = () => (
     </section>
   </Layout>
 );
+
+export const query = graphql`
+  {
+    strapiWebbileHomepage {
+      title
+      subtitle
+      learn_more
+      button
+      cover {
+        publicURL
+      }
+      Jumbo {
+        title
+        subtitle
+        IconList {
+          icon
+          label
+        }
+      }
+      Spotlight {
+        title
+        subtitle
+        imageSide
+        image {
+          publicURL
+        }
+      }
+      FeatureBlock {
+        title
+        subtitle
+        Feature {
+          title
+          subtitle
+          icon
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage;

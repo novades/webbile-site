@@ -33,21 +33,20 @@ class Layout extends Component {
     return (
       <StaticQuery
         query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
-              }
-            }
+        query GlobalQuery 
+        {
+          strapiWebbileGlobal{
+            title description keywords
           }
+        }
         `}
         render={data => (
           <>
             <Helmet
-              title={data.site.siteMetadata.title}
+              title={data.strapiWebbileGlobal.title}
               meta={[
-                { name: 'description', content: 'Spectral' },
-                { name: 'keywords', content: 'site, web' },
+                { name: 'description', content: data.strapiWebbileGlobal.description },
+                { name: 'keywords', content: data.strapiWebbileGlobal.keywords },
               ]}
             >
               <html lang="en" />
