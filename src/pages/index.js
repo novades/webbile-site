@@ -1,21 +1,24 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
-
 import Scroll from '../components/Scroll';
 
-const IndexPage = ({data}) => (
+import { useHomepageData } from '../queries/homepageQuery';
+
+const IndexPage = () => {
+  const data = useHomepageData();
+
+  return (
   <Layout>
-    <section id="banner" style={{backgroundImage: `url(${data.strapiWebbileHomepage.cover.publicURL})`}}>
+    <section id="banner" style={{backgroundImage: `url(${data.cover.publicURL})`}}>
       <div className="inner">
-        <h2>{data.strapiWebbileHomepage.head.title}</h2>
-        <p>{data.strapiWebbileHomepage.head.subtitle}</p>
+        <h2>{data.head.title}</h2>
+        <p>{data.head.subtitle}</p>
         <ul className="actions special">
           <li>
             <Scroll type="id" element="one">
               <a href="/#" className="button primary">
-                {data.strapiWebbileHomepage.button}
+                {data.button}
               </a>
             </Scroll>
           </li>
@@ -23,7 +26,7 @@ const IndexPage = ({data}) => (
       </div>
       <Scroll type="id" element="one">
         <a href="#one" className="more">
-          {data.strapiWebbileHomepage.learn_more}
+          {data.learn_more}
         </a>
       </Scroll>
     </section>
@@ -31,15 +34,15 @@ const IndexPage = ({data}) => (
     <section id="one" className="wrapper style1 special">
       <div className="inner">
         <header className="major">
-          <h2>{data.strapiWebbileHomepage.Jumbo.head.title}</h2>
-          <p>{data.strapiWebbileHomepage.Jumbo.head.subtitle}</p>
+          <h2>{data.Jumbo.head.title}</h2>
+          <p>{data.Jumbo.head.subtitle}</p>
         </header>
         {
-          data.strapiWebbileHomepage.Jumbo.IconList.length > 0
+          data.Jumbo.IconList.length > 0
           ?
           <ul className="icons major">
           {
-          data.strapiWebbileHomepage.Jumbo.IconList.map((item, index) => {
+          data.Jumbo.IconList.map((item, index) => {
             return (
             <li key={index}>
               <span className={`icon ${item.icon} major style${index+1}`}>
@@ -56,11 +59,11 @@ const IndexPage = ({data}) => (
     </section>
 
     {
-      data.strapiWebbileHomepage.Spotlight.length > 0
+      data.Spotlight.length > 0
       ?
       <section id="two" className="wrapper alt style2">
         {
-          data.strapiWebbileHomepage.Spotlight.map((item, index) => {
+          data.Spotlight.map((item, index) => {
             return (
             <section key={index} className={`spotlight ${item.imageSide}`}>
               <div className="image">
@@ -81,15 +84,15 @@ const IndexPage = ({data}) => (
     <section id="three" className="wrapper style3 special">
       <div className="inner">
         <header className="major">
-          <h2>{data.strapiWebbileHomepage.FeatureBlock.head.title}</h2>
-          <p>{data.strapiWebbileHomepage.FeatureBlock.head.subtitle}</p>
+          <h2>{data.FeatureBlock.head.title}</h2>
+          <p>{data.FeatureBlock.head.subtitle}</p>
         </header>
         {
-          data.strapiWebbileHomepage.FeatureBlock.Feature.length > 0
+          data.FeatureBlock.Feature.length > 0
           ?
           <ul className="features">
           {
-          data.strapiWebbileHomepage.FeatureBlock.Feature.map((item, index) => {
+          data.FeatureBlock.Feature.map((item, index) => {
             return (
               <li key={index} className={`icon ${item.icon}`}>
                 <h3>{item.title}</h3>
@@ -127,50 +130,7 @@ const IndexPage = ({data}) => (
         </ul>
       </div>
     </section>
-  </Layout>
-);
-
-export const query = graphql`
-  {
-    strapiWebbileHomepage {
-      head{
-        title subtitle
-      }
-      learn_more
-      button
-      cover {
-        publicURL
-      }
-      Jumbo {
-        head{
-          title subtitle
-        }
-        IconList {
-          icon
-          label
-        }
-      }
-      Spotlight {
-        head{
-          title subtitle
-        }
-        imageSide
-        image {
-          publicURL
-        }
-      }
-      FeatureBlock {
-        head{
-          title subtitle
-        }
-        Feature {
-          title
-          subtitle
-          icon
-        }
-      }
-    }
-  }
-`
+  </Layout>)
+}
 
 export default IndexPage;

@@ -16,13 +16,13 @@ module.exports = {
       style: 'brands',
       icon: 'fa-github',
       name: 'Github',
-      url: '#',
+      url: '#1',
     },
     {
       style: 'brands',
       icon: 'fa-twitter',
       name: 'Twitter',
-      url: '#',
+      url: '#2',
     },
     {
       style: 'solid',
