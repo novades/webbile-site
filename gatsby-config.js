@@ -15,7 +15,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: `http://strapiexperimental.spotlio.com:13370`,
+        apiURL: process.env.apiURL || `http://strapiexperimental.spotlio.com:13370`,
         contentTypes: [`blog-posts`],
         singleTypes: [`webbile-global`, `webbile-homepage`],
         queryLimit: 1000,

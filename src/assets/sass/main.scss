@@ -1078,7 +1078,7 @@
 			width: 60%;
 		}
 
-		&:nth-child(2n) {
+		&.right {
 			@include vendor('flex-direction', 'row-reverse');
 		}
 
@@ -1587,6 +1587,8 @@
 		overflow: hidden;
 		position: relative;
 		text-align: center;
+		background-size: cover;
+		background-repeat: no-repeat;
 
 		h2 {
 			@include vendor('transform', 'scale(1)');
