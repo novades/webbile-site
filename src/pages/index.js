@@ -9,8 +9,8 @@ const IndexPage = ({data}) => (
   <Layout>
     <section id="banner" style={{backgroundImage: `url(${data.strapiWebbileHomepage.cover.publicURL})`}}>
       <div className="inner">
-        <h2>{data.strapiWebbileHomepage.title}</h2>
-        <p>{data.strapiWebbileHomepage.subtitle}</p>
+        <h2>{data.strapiWebbileHomepage.head.title}</h2>
+        <p>{data.strapiWebbileHomepage.head.subtitle}</p>
         <ul className="actions special">
           <li>
             <Scroll type="id" element="one">
@@ -31,8 +31,8 @@ const IndexPage = ({data}) => (
     <section id="one" className="wrapper style1 special">
       <div className="inner">
         <header className="major">
-          <h2>{data.strapiWebbileHomepage.Jumbo.title}</h2>
-          <p>{data.strapiWebbileHomepage.Jumbo.subtitle}</p>
+          <h2>{data.strapiWebbileHomepage.Jumbo.head.title}</h2>
+          <p>{data.strapiWebbileHomepage.Jumbo.head.subtitle}</p>
         </header>
         {
           data.strapiWebbileHomepage.Jumbo.IconList.length > 0
@@ -64,11 +64,11 @@ const IndexPage = ({data}) => (
             return (
             <section key={index} className={`spotlight ${item.imageSide}`}>
               <div className="image">
-                <img src={item.image.publicURL} alt={item.title} />
+                <img src={item.image.publicURL} alt={item.head.title} />
               </div>
               <div className="content">
-                <h2>{item.title}</h2>
-                <p>{item.subtitle}</p>
+                <h2>{item.head.title}</h2>
+                <p>{item.head.subtitle}</p>
               </div>
             </section>
             )
@@ -81,8 +81,8 @@ const IndexPage = ({data}) => (
     <section id="three" className="wrapper style3 special">
       <div className="inner">
         <header className="major">
-          <h2>{data.strapiWebbileHomepage.FeatureBlock.title}</h2>
-          <p>{data.strapiWebbileHomepage.FeatureBlock.subtitle}</p>
+          <h2>{data.strapiWebbileHomepage.FeatureBlock.head.title}</h2>
+          <p>{data.strapiWebbileHomepage.FeatureBlock.head.subtitle}</p>
         </header>
         {
           data.strapiWebbileHomepage.FeatureBlock.Feature.length > 0
@@ -133,32 +133,36 @@ const IndexPage = ({data}) => (
 export const query = graphql`
   {
     strapiWebbileHomepage {
-      title
-      subtitle
+      head{
+        title subtitle
+      }
       learn_more
       button
       cover {
         publicURL
       }
       Jumbo {
-        title
-        subtitle
+        head{
+          title subtitle
+        }
         IconList {
           icon
           label
         }
       }
       Spotlight {
-        title
-        subtitle
+        head{
+          title subtitle
+        }
         imageSide
         image {
           publicURL
         }
       }
       FeatureBlock {
-        title
-        subtitle
+        head{
+          title subtitle
+        }
         Feature {
           title
           subtitle
