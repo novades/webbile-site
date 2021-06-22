@@ -2,15 +2,15 @@ import React from 'react';
 
 import Layout from '../components/Layout';
 import Scroll from '../components/Scroll';
+import ContactForm from '../components/ContactForm';
 
 import { useHomepageData } from '../queries/homepageQuery';
 
 const IndexPage = () => {
   const data = useHomepageData();
-
   return (
   <Layout>
-    <section id="banner" style={{backgroundImage: `url(${data.cover.publicURL})`}}>
+    <section id="banner" style={{backgroundImage: `url(${data.cover.localFile.publicURL})`}}>
       <div className="inner">
         <h2>{data.head.title}</h2>
         <p>{data.head.subtitle}</p>
@@ -67,7 +67,7 @@ const IndexPage = () => {
             return (
             <section key={index} className={`spotlight ${item.imageSide}`}>
               <div className="image">
-                <img src={item.image.publicURL} alt={item.head.title} />
+                <img src={item.image.localFile.publicURL} alt={item.head.title} />
               </div>
               <div className="content">
                 <h2>{item.head.title}</h2>
@@ -108,27 +108,7 @@ const IndexPage = () => {
     </section>
 
     <section id="cta" className="wrapper style4">
-      <div className="inner">
-        <header>
-          <h2>Arcue ut vel commodo</h2>
-          <p>
-            Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet
-            eleifend fringilla.
-          </p>
-        </header>
-        <ul className="actions stacked">
-          <li>
-            <a href="/#" className="button fit primary">
-              Activate
-            </a>
-          </li>
-          <li>
-            <a href="/#" className="button fit">
-              Learn More
-            </a>
-          </li>
-        </ul>
-      </div>
+      <ContactForm />
     </section>
   </Layout>)
 }

@@ -1734,16 +1734,31 @@
 			header {
 				@include vendor('order', '1');
 				padding-right: 3em;
-				width: 70%;
+				width: 100%;
 
 				p {
 					color: inherit;
+					&.formErrorMessage{
+						color: #611a15;
+						background-color: #fdecea;
+						margin: 15px 0 0 25px;
+						padding: 10px;
+						width: 100%;
+					}
+					&.formOkMessage{
+						color: #1e4620;
+						background-color: #edf7ed;
+						margin: 15px 0 0 25px;
+						padding: 10px;
+						width: 100%;
+					}
 				}
 			}
 
 			.actions {
 				@include vendor('order', '2');
-				width: 30%;
+				width: auto;
+				float: right;
 			}
 
 			@include breakpoint('<=medium') {

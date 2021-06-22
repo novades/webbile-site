@@ -1,5 +1,6 @@
 import React from 'react';
 import config from '../../config';
+
 export default function Footer() {
   return (
     <footer id="footer">
@@ -16,7 +17,7 @@ export default function Footer() {
         })}
       </ul>
       <ul className="copyright">
-        <li>&copy; Webbile Apps SL</li>
+        <li>&copy; Webbile Apps SL {new Date().getFullYear()}</li>
         <li>
           Design: <a href="http://html5up.net">HTML5 UP</a>
         </li>

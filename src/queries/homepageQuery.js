@@ -10,7 +10,9 @@ export const useHomepageData = () => {
           learn_more
           button
           cover {
-            publicURL
+            localFile {
+              publicURL
+            }
           }
           Jumbo {
             head{
@@ -27,7 +29,9 @@ export const useHomepageData = () => {
             }
             imageSide
             image {
-              publicURL
+              localFile {
+                publicURL
+              }
             }
           }
           FeatureBlock {

@@ -17,7 +17,7 @@ module.exports = {
       options: {
         apiURL: process.env.apiURL || `http://strapiexperimental.spotlio.com:13370`,
         contentTypes: [`blog-posts`],
-        singleTypes: [`webbile-global`, `webbile-homepage`],
+        singleTypes: [`webbile-global`, `webbile-homepage`, `webbile-contact`],
         queryLimit: 1000,
       },
     },
